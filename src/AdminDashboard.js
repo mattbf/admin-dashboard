@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -20,7 +20,10 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './DashboardList.js';
 import AdminDashboardRouter from './AdminDashboardRouter.js';
 import {withRouter} from 'react-router'
-import { BrowserRouter as Router, Route, } from "react-router-dom";
+import { BrowserRouter as Router, Route, match} from "react-router-dom";
+import NotificationsMenu from './NotificationsMenu.js';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 
 function ExternalLinks() {
@@ -139,18 +142,15 @@ function AdminDashboard() {
     setOpen(false);
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-  const DashboardLink = React.forwardRef((props, ref) => (
-    <Link innerRef={ref} to="/" {...props} />
-  ));
-  const UsersLink = React.forwardRef((props, ref) => (
-    <Link innerRef={ref} to="/users/" {...props} />
-  ));
-  const AnalyticsLink = React.forwardRef((props, ref) => (
-    <Link innerRef={ref} to="/analytics/" {...props} />
-  ));
-  const ReviewsLink = React.forwardRef((props, ref) => (
-    <Link innerRef={ref} to="/reviews/" {...props} />
-  ));
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  function handleOpenNotifications(event) {
+    setAnchorEl(event.currentTarget);
+  }
+
+  function handleCloseNotifications() {
+    setAnchorEl(null);
+  }
 
   return (
     <div className={classes.root}>
@@ -167,13 +167,24 @@ function AdminDashboard() {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Dashboard
+            Dashboard Name
           </Typography>
-          <IconButton color="inherit">
+          <IconButton color="inherit" onClick={handleOpenNotifications}>
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
-            </Badge>
+              </Badge>
           </IconButton>
+          <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleCloseNotifications}
+          >
+            <MenuItem onClick={handleCloseNotifications}>Profile</MenuItem>
+            <MenuItem onClick={handleCloseNotifications}>My account</MenuItem>
+            <MenuItem onClick={handleCloseNotifications}>Logout</MenuItem>
+          </Menu>
         </Toolbar>
       </AppBar>
       <Drawer
