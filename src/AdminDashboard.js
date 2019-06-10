@@ -17,7 +17,7 @@ import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems, secondaryListItems } from './DashboardList.js';
+import DashboardList from './DashboardList.js';
 import AdminDashboardRouter from './AdminDashboardRouter.js';
 import {withRouter} from 'react-router'
 import { BrowserRouter as Router, Route, match} from "react-router-dom";
@@ -135,6 +135,7 @@ const useStyles = makeStyles(theme => ({
 function AdminDashboard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
+  const {mainListItems, secondaryListItems} = DashboardList()
   const handleDrawerOpen = () => {
     setOpen(true);
   };
