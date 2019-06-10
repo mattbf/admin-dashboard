@@ -1,29 +1,60 @@
 import React, {useState} from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
+// import Drawer from '@material-ui/core/Drawer';
+// import AppBar from '@material-ui/core/AppBar';
+// import Toolbar from '@material-ui/core/Toolbar';
+// import List from '@material-ui/core/List';
+// import Typography from '@material-ui/core/Typography';
+// import Divider from '@material-ui/core/Divider';
+// import IconButton from '@material-ui/core/IconButton';
+// import Badge from '@material-ui/core/Badge';
+// import Container from '@material-ui/core/Container';
+// import Grid from '@material-ui/core/Grid';
+// import Paper from '@material-ui/core/Paper';
+// import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+// import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+// import NotificationsIcon from '@material-ui/icons/Notifications';
 import DashboardList from './DashboardList.js';
 import AdminDashboardRouter from './AdminDashboardRouter.js';
 import {withRouter} from 'react-router'
 import { BrowserRouter as Router, Route, match} from "react-router-dom";
 import NotificationsMenu from './NotificationsMenu.js';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+// import Menu from '@material-ui/core/Menu';
+// import MenuItem from '@material-ui/core/MenuItem';
+// import ListItem from '@material-ui/core/ListItem';
+// import ListItemIcon from '@material-ui/core/ListItemIcon';
+// import ListItemText from '@material-ui/core/ListItemText';
+
+import {
+  AppBar,
+  Drawer,
+  Toolbar,
+  List,
+  Typography,
+  Divider,
+  IconButton,
+  Badge,
+  Container,
+  Grid,
+  Paper,
+  Link,
+  Menu,
+  MenuItem,
+  ListItemIcon,
+  ListItemText,
+  ListItem,
+} from '@material-ui/core'
+
+import {
+  Notifications,
+  Star,
+  PersonAdd,
+  ChevronLeft,
+} from '@material-ui/icons'
 
 
 function ExternalLinks() {
@@ -129,8 +160,18 @@ const useStyles = makeStyles(theme => ({
   },
   externallinks: {
     bottom: '0px',
-  }
+  },
 }));
+
+const StyledMenu = withStyles({
+  paper: {
+    minWidth: '300px',
+  },
+})(props => (
+  <Menu
+    {...props}
+  />
+));
 
 function AdminDashboard() {
   const classes = useStyles();
@@ -172,20 +213,34 @@ function AdminDashboard() {
           </Typography>
           <IconButton color="inherit" onClick={handleOpenNotifications}>
             <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
+              <Notifications />
               </Badge>
           </IconButton>
-          <Menu
+          <StyledMenu
             id="simple-menu"
             anchorEl={anchorEl}
             keepMounted
             open={Boolean(anchorEl)}
             onClose={handleCloseNotifications}
+            className={classes.notifMenu}
           >
-            <MenuItem onClick={handleCloseNotifications}>Profile</MenuItem>
-            <MenuItem onClick={handleCloseNotifications}>My account</MenuItem>
+            <List>
+              <ListItem button>
+                <ListItemIcon >
+                  <PersonAdd color="secondary"/>
+                </ListItemIcon>
+                <ListItemText primary="2 New Users!" />
+              </ListItem>
+              <ListItem button>
+                <ListItemIcon>
+                  <Star color="secondary"/>
+                </ListItemIcon>
+                <ListItemText primary="New Review Submitted" />
+              </ListItem>
+            </List>
+            <Divider />
             <MenuItem onClick={handleCloseNotifications}>Logout</MenuItem>
-          </Menu>
+          </StyledMenu>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -197,7 +252,7 @@ function AdminDashboard() {
       >
         <div className={classes.toolbarIcon}>
           <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
+            <ChevronLeft />
           </IconButton>
         </div>
         <Divider />
