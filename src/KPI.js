@@ -23,23 +23,18 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'start',
-      width: '45%',
-      margin: theme.spacing(1),
+      width: '100%',
+      
       [theme.breakpoints.down('sm')]: {
         width: '100%',
       },
-      border: 'solid',
     },
     card: {
       paddingTop: theme.spacing(1),
       paddingBottom: theme.spacing(1),
       paddingLeft: theme.spacing(2),
       paddingRight: theme.spacing(2),
-      position: 'relative',
       width: '100%',
-      maxWidth: '300px',
-      height: '85px',
-      margin: theme.spacing(1),
     },
     Heading: {
       marginRight: '20px',
