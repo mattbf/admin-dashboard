@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import KPI from './KPI.js';
+import KPI from '../Visualization/KPI.js';
 
 const info = {
   name: "Name",
