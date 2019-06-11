@@ -42,12 +42,14 @@ import {
 function ExternalLinks() {
   const classes = useStyles();
   return (
-    <Typography variant="body2" color="textSecondary" align="center" className={classes.externallinks}>
-      {'Go to '}
-    <a target="_blank" color="inherit" href="https://material-ui.com/" className={classes.link}>Website</a>
-      {' or '}
-      <a target="_blank" color="inherit" href="https://material-ui.com/" className={classes.link}>Application</a>
-    </Typography>
+    <div className={classes.externallinks}>
+      <Typography variant="body2" color="textSecondary" align="center" className={classes.externallinks}>
+        {'Go to '}
+      <a target="_blank" color="inherit" href="https://material-ui.com/" className={classes.link}>Website</a>
+        {' or '}
+        <a target="_blank" color="inherit" href="https://material-ui.com/" className={classes.link}>Application</a>
+      </Typography>
+    </div>
   );
 }
 
@@ -117,6 +119,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     height: '100vh',
     overflow: 'auto',
+    border: 'solid',
   },
   container: {
     paddingTop: theme.spacing(4),
@@ -141,7 +144,13 @@ const useStyles = makeStyles(theme => ({
     },
   },
   externallinks: {
+    position: 'relative',
+    width: '100%',
     bottom: '0px',
+    border: 'solid',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginTop: 'auto',
   },
 }));
 

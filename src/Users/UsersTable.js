@@ -1,11 +1,20 @@
+import React from 'react';
+import MaterialTable from 'material-table'
 
+import {
+  Delete,
+  Search,
+  Clear,
+  FirstPage,
+  LastPage,
+  NavigateNext,
+  NavigateBefore,
+} from '@material-ui/icons'
 
-
-class PositioningActionsColumn extends React.Component {
-  render() {
+function UsersTable() {
     return (
       <MaterialTable
-        title="Positioning Actions Column Preview"
+        title="Users"
         columns={[
           { title: 'Name', field: 'name' },
           { title: 'Surname', field: 'surname' },
@@ -27,16 +36,25 @@ class PositioningActionsColumn extends React.Component {
             onClick: (event, rowData) => alert("You saved " + rowData.name)
           },
           rowData => ({
-            icon: 'delete',
+            icon: Delete,
             tooltip: 'Delete User',
-            onClick: (event, rowData) => confirm("You want to delete " + rowData.name),
+            onClick: (event, rowData) => alert("You want to delete " + rowData.name),
             disabled: rowData.birthYear < 2000
           })
         ]}
         options={{
           actionsColumnIndex: -1
         }}
+        icons={{
+          Search: Search,
+          Clear: Clear,
+          FirstPage: FirstPage,
+          LastPage: LastPage,
+          NextPage: NavigateNext,
+          PreviousPage: NavigateBefore,
+        }}
       />
     )
-  }
 }
+
+export default UsersTable
