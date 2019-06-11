@@ -119,7 +119,8 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     height: '100vh',
     overflow: 'auto',
-    border: 'solid',
+    display: 'flex',
+    flexDirection: 'column',
   },
   container: {
     paddingTop: theme.spacing(4),
@@ -146,8 +147,7 @@ const useStyles = makeStyles(theme => ({
   externallinks: {
     position: 'relative',
     width: '100%',
-    bottom: '0px',
-    border: 'solid',
+    bottom: '8px',
     marginLeft: 'auto',
     marginRight: 'auto',
     marginTop: 'auto',

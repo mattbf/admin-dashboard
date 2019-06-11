@@ -12,6 +12,7 @@ import {
 
 import {
   ArrowUpward,
+  ArrowDownward,
   InfoOutlined,
   TrendingUp,
 } from '@material-ui/icons';
@@ -24,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
       flexDirection: 'column',
       alignItems: 'start',
       width: '100%',
-      
+
       [theme.breakpoints.down('sm')]: {
         width: '100%',
       },
@@ -36,25 +37,27 @@ const useStyles = makeStyles((theme: Theme) =>
       paddingRight: theme.spacing(2),
       width: '100%',
     },
+    wrapper: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'start',
+      justifyContent: 'space-between',
+    },
     Heading: {
       marginRight: '20px',
     },
-    Value: {
-
+    infoDiv: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'start'
     },
     valuebox: {
       display: 'flex',
-      alignItems: 'center',
+      alignItems: 'flex-end',
+      justifyContent: 'end',
     },
     margin: {
       margin: theme.spacing(1),
-    },
-    infoButtons: {
-      display: 'flex',
-      alignItems: 'center',
-      position: 'absolute',
-      right: '2px',
-      top: '2px',
     },
     colorHover: {
       '&:hover': {
@@ -65,33 +68,29 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+const info = {
+  title: 'Users',
+  value: '12',
+  prefix: '%',
+  isPos: true,
+  change: '2',
+}
+
 function KPI(props) {
   const classes = useStyles();
-  const info = props.info
+  //const info = props.info
   return (
     <div className={classes.root}>
       <Paper className={classes.card}>
-        <div className={classes.infoButtons}>
-          {info.trend ?
-            <Link style={{textDecoration: 'none'}} to={`/stocks/${info.symbol}/${info.name}`}>
-              <IconButton aria-label="Delete"  size="small" className={classes.colorHover}>
-                <TrendingUp fontSize="inherit"/>
-              </IconButton>
-            </Link>
-            :
-            null
-          }
-          <Tooltip title={info.tooltip} interactive placement="bottom-end">
-            <IconButton aria-label="Delete"  size="small">
-              <InfoOutlined fontSize="inherit"/>
-            </IconButton>
-          </Tooltip>
-        </div>
-        <Typography variant='subtitle2' className={classes.Heading}> {info.name} </Typography>
-        <div className={classes.valuebox}>
-          <Typography variant='subtitle1' className={classes.Value}> {info.prefix} </Typography>
-          <Typography variant='subtitle1' className={classes.Value}> {info.value} </Typography>
-          <Typography variant='subtitle1' className={classes.Value}> {info.suffix} </Typography>
+        <div className={classes.wrapper}>
+          <div className={classes.infoDiv}>
+            <Typography variant='subtitle2' className={classes.Heading}> {info.title} </Typography>
+            <Typography variant='subtitle1' className={classes.Value}> {info.value} </Typography>
+          </div>
+          <div className={classes.valuebox} style={{color: info.isPos ? '#00c676' : '#ff1744',}}>
+            <Typography variant='subtitle1' className={classes.percent}>{info.change}</Typography>
+            {info.isPos ? <ArrowUpward style={{ fontSize: 20 }} className={classes.arrow}/> : <ArrowDownward style={{ fontSize: 20 }} className={classes.arrow}/> }
+          </div>
         </div>
       </Paper>
     </div>
