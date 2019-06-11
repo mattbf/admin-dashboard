@@ -9,6 +9,8 @@ import {
   LastPage,
   NavigateNext,
   NavigateBefore,
+  FullScreen,
+  Pageview
 } from '@material-ui/icons'
 
 function UsersTable() {
@@ -16,28 +18,22 @@ function UsersTable() {
       <MaterialTable
         title="Users"
         columns={[
-          { title: 'Name', field: 'name' },
-          { title: 'Surname', field: 'surname' },
-          { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-          {
-            title: 'Birth Place',
-            field: 'birthCity',
-            lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-          },
+          { title: 'ID', field: 'id' },
+          { title: 'Username', field: 'username' },
+          { title: 'email', field: 'email' },
+          { title: 'Date Created', field: 'dateCreate', type: 'date' },
         ]}
         data={[
-          { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-          { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
+          { id: '1', username: 'username', email: 'e@mail.com', dateCreate: new Date() },
+          { id: '2', username: 'Name', email: 'email@gmail.com', dateCreate: new Date() },
+          { id: '3', username: 'Something', email: 'jim@gmail.com', dateCreate: new Date() },
+          { id: '4', username: 'Baran', email: 'something@c.com', dateCreate: new Date() },
+
         ]}
         actions={[
-          {
-            icon: 'save',
-            tooltip: 'Save User',
-            onClick: (event, rowData) => alert("You saved " + rowData.name)
-          },
           rowData => ({
-            icon: Delete,
-            tooltip: 'Delete User',
+            icon: Pageview,
+            tooltip: 'View Details',
             onClick: (event, rowData) => alert("You want to delete " + rowData.name),
             disabled: rowData.birthYear < 2000
           })

@@ -19,7 +19,6 @@ import {
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    border: "solid",
     width: '100%',
   },
   paper: {
@@ -38,7 +37,7 @@ const useStyles = makeStyles(theme => ({
 function Users() {
   const classes = useStyles();
   const [splitView, setSplitView] = useState(false)
-  const GridNum = splitView ? 6 : 12
+  const GridNum = splitView ? 8 : 12
 
   function toggleSplitView() {
     setSplitView(!splitView)
@@ -60,7 +59,7 @@ function Users() {
            <UsersTable/>
          </Grid>
          {splitView ?
-           <Grid item xs={12} sm={6} md={6}>
+           <Grid item xs={12} sm={4} md={4}>
              <UserCard/>
            </Grid>
            :

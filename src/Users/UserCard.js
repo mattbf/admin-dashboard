@@ -8,12 +8,21 @@ import {
   Typography,
   IconButton,
   Tooltip,
+  Divider,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  ListItemAvatar,
+  Avatar,
 } from '@material-ui/core';
 
 import {
   ArrowUpward,
   InfoOutlined,
   TrendingUp,
+  Person,
+  CalendarToday,
 } from '@material-ui/icons';
 
 
@@ -34,8 +43,8 @@ const useStyles = makeStyles((theme: Theme) =>
       paddingBottom: theme.spacing(1),
       paddingLeft: theme.spacing(2),
       paddingRight: theme.spacing(2),
-      width: '300px',
-      height: '500px',
+      width: '100%',
+      height: '100%',
     },
     Heading: {
       marginRight: '20px',
@@ -62,7 +71,11 @@ const useStyles = makeStyles((theme: Theme) =>
        color: "#00C676",
        backgroundColor: 'rgba(0, 198, 118, 0.15)',
      },
-    }
+   },
+   twoList: {
+     display: 'flex',
+
+   }
   }),
 );
 
@@ -72,7 +85,47 @@ function UserCard(props) {
   return (
     <div className={classes.root}>
       <Paper className={classes.card}>
-
+        <List className={classes.root}>
+          <ListItem>
+            <ListItemAvatar>
+              <Avatar>
+                <Person />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText primary="Username" secondary="email@gmail.com" />
+          </ListItem>
+        </List>
+        <Divider/>
+        <div className={classes.twoList}>
+          <List className={classes.root}>
+            <ListItem>
+              <ListItemText primary="Account Created:" />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary="Last Sign On" />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary="# of Meeting Types" />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary="Meetings Booked" />
+            </ListItem>
+          </List>
+          <List className={classes.root}>
+            <ListItem>
+              <ListItemText primary="Jan 7, 2014" />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary="Feb 16, 2018" />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary="3" />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary="123" />
+            </ListItem>
+          </List>
+        </div>
       </Paper>
     </div>
   )
