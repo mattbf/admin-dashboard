@@ -13,7 +13,7 @@ import {
   Pageview
 } from '@material-ui/icons'
 
-function UsersTable() {
+function UsersTable(props) {
     return (
       <MaterialTable
         title="Users"
@@ -23,18 +23,12 @@ function UsersTable() {
           { title: 'email', field: 'email' },
           { title: 'Date Created', field: 'dateCreate', type: 'date' },
         ]}
-        data={[
-          { id: '1', username: 'username', email: 'e@mail.com', dateCreate: new Date() },
-          { id: '2', username: 'Name', email: 'email@gmail.com', dateCreate: new Date() },
-          { id: '3', username: 'Something', email: 'jim@gmail.com', dateCreate: new Date() },
-          { id: '4', username: 'Baran', email: 'something@c.com', dateCreate: new Date() },
-
-        ]}
+        data={props.users}
         actions={[
           rowData => ({
             icon: Pageview,
             tooltip: 'View Details',
-            onClick: (event, rowData) => alert("You want to delete " + rowData.name),
+            onClick: (event, rowData) => props.openCard(rowData.id),
             disabled: rowData.birthYear < 2000
           })
         ]}

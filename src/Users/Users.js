@@ -34,13 +34,26 @@ const useStyles = makeStyles(theme => ({
  },
 }));
 
+const UsersData =[
+  { id: '1', username: 'username', email: 'e@mail.com', dateCreate: new Date() },
+  { id: '2', username: 'Name', email: 'email@gmail.com', dateCreate: new Date() },
+  { id: '3', username: 'Something', email: 'jim@gmail.com', dateCreate: new Date() },
+  { id: '4', username: 'Baran', email: 'something@c.com', dateCreate: new Date() },
+
+]
+
 function Users() {
   const classes = useStyles();
   const [splitView, setSplitView] = useState(false)
   const GridNum = splitView ? 8 : 12
+  const [selectedUser, setSelectedUser] = useState(1)
 
   function toggleSplitView() {
     setSplitView(!splitView)
+  }
+  function selectUser(id) {
+    setSelectedUser(id - 1 )
+    setSplitView(true)
   }
 
   return(
@@ -56,11 +69,11 @@ function Users() {
       <div className={classes.root}>
        <Grid container spacing={3}>
          <Grid item xs={12} sm={6} md={GridNum}>
-           <UsersTable/>
+           <UsersTable users={UsersData} openCard={selectUser}/>
          </Grid>
          {splitView ?
            <Grid item xs={12} sm={4} md={4}>
-             <UserCard/>
+             <UserCard info={UsersData[selectedUser]}/>
            </Grid>
            :
            null

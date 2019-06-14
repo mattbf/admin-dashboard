@@ -92,7 +92,7 @@ function UserCard(props) {
                 <Person />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary="Username" secondary="email@gmail.com" />
+            <ListItemText primary={info.username} secondary={info.email} />
           </ListItem>
         </List>
         <Divider/>
@@ -113,7 +113,7 @@ function UserCard(props) {
           </List>
           <List className={classes.root}>
             <ListItem>
-              <ListItemText primary="Jan 7, 2014" />
+              <ListItemText primary={info.dateCreate.getDate()} />
             </ListItem>
             <ListItem>
               <ListItemText primary="Feb 16, 2018" />
