@@ -51,10 +51,15 @@ const useStyles = makeStyles((theme: Theme) =>
       flexDirection: 'column',
       alignItems: 'start'
     },
+    valueDiv: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'flex-end',
+    },
     valuebox: {
       display: 'flex',
-      alignItems: 'flex-end',
-      justifyContent: 'end',
+      alignItems: 'center',
+      justifyContent: 'center',
     },
     margin: {
       margin: theme.spacing(1),
@@ -64,16 +69,20 @@ const useStyles = makeStyles((theme: Theme) =>
        color: "#00C676",
        backgroundColor: 'rgba(0, 198, 118, 0.15)',
      },
-    }
+   },
+   arrow: {
+     marginTop: '-2px',
+   }
   }),
 );
 
 const info = {
   title: 'Users',
   value: '12',
-  prefix: '%',
-  isPos: true,
+  suffix: '%',
+  isPos: false,
   change: '2',
+  changeperc: '18.5',
 }
 
 function KPI(props) {
@@ -85,11 +94,17 @@ function KPI(props) {
         <div className={classes.wrapper}>
           <div className={classes.infoDiv}>
             <Typography variant='subtitle2' className={classes.Heading}> {info.title} </Typography>
-            <Typography variant='subtitle1' className={classes.Value}> {info.value} </Typography>
+            <div className={classes.valueDiv}>
+            <Typography variant='h3' > {info.value} </Typography>
+            {info.isPos ? <Typography style={{ color: '#00c676', marginBottom: '3px', marginLeft: '6px', marginRight: '2px', }}> + </Typography> : <Typography style={{ color: '#ff1744', marginBottom: '3px', marginLeft: '6px', marginRight: '2px',  }}> - </Typography> }
+            {info.isPos ? <Typography variant='subtitle1' style={{ color: '#00c676',  }}> {info.change} </Typography> : <Typography variant='subtitle1' style={{ color: '#ff1744',  }}> {info.change} </Typography> }
+
+            </div>
           </div>
           <div className={classes.valuebox} style={{color: info.isPos ? '#00c676' : '#ff1744',}}>
-            <Typography variant='subtitle1' className={classes.percent}>{info.change}</Typography>
-            {info.isPos ? <ArrowUpward style={{ fontSize: 20 }} className={classes.arrow}/> : <ArrowDownward style={{ fontSize: 20 }} className={classes.arrow}/> }
+            {info.isPos ? <ArrowUpward style={{ fontSize: 16 }} className={classes.arrow}/> : <ArrowDownward style={{ fontSize: 12 }} className={classes.arrow}/> }
+            <Typography variant='subtitle1' className={classes.percent}>{info.changeperc}</Typography>
+            <Typography variant='subtitle1' className={classes.percent}>{info.suffix}</Typography>
           </div>
         </div>
       </Paper>

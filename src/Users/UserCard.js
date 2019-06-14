@@ -85,47 +85,54 @@ function UserCard(props) {
   return (
     <div className={classes.root}>
       <Paper className={classes.card}>
-        <List className={classes.root}>
-          <ListItem>
-            <ListItemAvatar>
-              <Avatar>
-                <Person />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary={info.username} secondary={info.email} />
-          </ListItem>
-        </List>
-        <Divider/>
-        <div className={classes.twoList}>
+        {props.info ?
+          <div>
           <List className={classes.root}>
             <ListItem>
-              <ListItemText primary="Account Created:" />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="Last Sign On" />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="# of Meeting Types" />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="Meetings Booked" />
+              <ListItemAvatar>
+                <Avatar>
+                  <Person />
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText primary={info.username} secondary={info.email} />
             </ListItem>
           </List>
-          <List className={classes.root}>
-            <ListItem>
-              <ListItemText primary={info.dateCreate.getDate()} />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="Feb 16, 2018" />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="3" />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary="123" />
-            </ListItem>
-          </List>
-        </div>
+          <Divider/>
+          <div className={classes.twoList}>
+            <List className={classes.root}>
+              <ListItem>
+                <ListItemText primary="Account Created:" />
+              </ListItem>
+              <ListItem>
+                <ListItemText primary="Last Sign On" />
+              </ListItem>
+              <ListItem>
+                <ListItemText primary="# of Meeting Types" />
+              </ListItem>
+              <ListItem>
+                <ListItemText primary="Meetings Booked" />
+              </ListItem>
+            </List>
+            <List className={classes.root}>
+              <ListItem>
+                <ListItemText primary={info.dateCreate.getDate()} />
+              </ListItem>
+              <ListItem>
+                <ListItemText primary="Feb 16, 2018" />
+              </ListItem>
+              <ListItem>
+                <ListItemText primary="3" />
+              </ListItem>
+              <ListItem>
+                <ListItemText primary="123" />
+              </ListItem>
+            </List>
+          </div>
+          </div>
+          :
+          "Please Select a user"
+        }
+
       </Paper>
     </div>
   )

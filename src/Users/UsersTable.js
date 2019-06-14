@@ -10,7 +10,8 @@ import {
   NavigateNext,
   NavigateBefore,
   FullScreen,
-  Pageview
+  Pageview,
+  Close
 } from '@material-ui/icons'
 
 function UsersTable(props) {
@@ -37,7 +38,7 @@ function UsersTable(props) {
         }}
         icons={{
           Search: Search,
-          Clear: Clear,
+          Close: Clear,
           FirstPage: FirstPage,
           LastPage: LastPage,
           NextPage: NavigateNext,

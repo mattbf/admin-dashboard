@@ -46,13 +46,13 @@ function Users() {
   const classes = useStyles();
   const [splitView, setSplitView] = useState(false)
   const GridNum = splitView ? 8 : 12
-  const [selectedUser, setSelectedUser] = useState(1)
+  const [selectedUser, setSelectedUser] = useState(null)
 
   function toggleSplitView() {
     setSplitView(!splitView)
   }
   function selectUser(id) {
-    setSelectedUser(id - 1 )
+    setSelectedUser(id - 1)
     setSplitView(true)
   }
 
